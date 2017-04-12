@@ -50,7 +50,7 @@ object BsonEncoder {
   ): BsonEncoder[Option[T]] =
     createEncoder[Option[T]](a ⇒ {
       val encodedValue = a.map(encoder.encode)
-      if (noneWriter.shouldWrite) {
+      if (noneWriter.shouldWrite()) {
         encodedValue.getOrElse(BsonNull())
       } else {
         encodedValue.orNull

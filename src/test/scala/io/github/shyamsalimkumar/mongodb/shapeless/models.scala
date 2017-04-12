@@ -8,6 +8,23 @@ object models {
 
   case class NestModelA(
     id:          ObjectId,
+    boolValue:   Boolean,
+    stringValue: String,
+    intValue:    Int,
+    longValue:   Long,
+    doubleValue: Double,
+    seqValue:    Seq[String],
+    optValue:    Option[String],
+    mapValue:    Map[String, String] /*,
+    nestModelB:  NestModelB,
+    seqValue2:   Seq[NestModelB],
+    mapValue2:   Map[String, NestModelB],
+    optValue2:   Option[NestModelB]*/
+  ) extends BaseDBModel
+
+  case class NestModelADupe(
+    id:          ObjectId,
+    boolValue:   Boolean,
     stringValue: String,
     intValue:    Int,
     longValue:   Long,
@@ -23,6 +40,7 @@ object models {
 
   case class NestModelB(
     stringValue: String,
+    boolValue:   Boolean,
     intValue:    Int,
     longValue:   Long,
     doubleValue: Double,

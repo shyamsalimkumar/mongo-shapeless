@@ -1,8 +1,8 @@
 package io.github.shyamsalimkumar.mongodb.shapeless.helpers
 
-sealed trait NoneWriter[A] { def shouldWrite: Boolean }
+sealed trait NoneWriter[A] { def shouldWrite(): Boolean }
 
-sealed trait NoneHandler { def writeNull: Boolean }
+sealed trait NoneHandler { def writeNull(): Boolean }
 
 case class IgnoreNoneHandler() extends NoneHandler {
   override def writeNull: Boolean = false

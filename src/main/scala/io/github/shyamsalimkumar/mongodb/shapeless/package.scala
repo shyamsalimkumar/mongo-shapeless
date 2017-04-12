@@ -1,8 +1,9 @@
 package io.github.shyamsalimkumar.mongodb
 
+import io.github.shyamsalimkumar.mongodb.shapeless.helpers.decoder.{ BsonDocumentDecoder, DecodeError }
 import io.github.shyamsalimkumar.mongodb.shapeless.helpers.{ BsonFieldNameAdapter, NoneHandler, NoneWriter }
 import io.github.shyamsalimkumar.mongodb.shapeless.helpers.encoder.BsonDocumentEncoder
-import io.github.shyamsalimkumar.mongodb.shapeless.helpers.decoder.BsonDocumentDecoder
+import org.mongodb.scala.bson.BsonDocument
 import org.mongodb.scala.bson.collection.immutable.Document
 
 package object shapeless {
@@ -16,10 +17,11 @@ package object shapeless {
     ): Document = enc.encode(dbModel)
   }
 
-  implicit class PimpedDocument[T <: BaseDBModel](document: Document) {
-    def as[T](
+  implicit class PimpedBsonDocument(document: BsonDocument) {
+    def as[T <: BaseDBModel](
       implicit
-      dec: BsonDocumentDecoder[T]
-    ): T = dec.decode(document)
+      fieldNameAdapter: BsonFieldNameAdapter,
+      dec:              BsonDocumentDecoder[T]
+    ): Either[DecodeError, T] = dec.decode(document)
   }
 }

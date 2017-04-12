@@ -25,7 +25,7 @@ object BsonFieldNameAdapter {
     override def adapt(fieldName: String) = if (fieldName == "id") "_id" else fieldName
   }
 
-  // Default adapter
+  // Default encoder adapter
   implicit val id2PKeyNCam2SnakeAdapter = new BsonFieldNameAdapter {
     override def adapt(fieldName: String) = camelToSnakeCaseAdapter.adapt(idToPrimaryKeyAdapter.adapt(fieldName))
   }
