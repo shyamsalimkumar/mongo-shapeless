@@ -1,7 +1,9 @@
-##MongoDB Shapeless
+MongoDB Shapeless
+=================
 My trial at using Shapeless with MongoDB
 
-###Supported Types
+Supported Types
+---------------
 Currently it supports the following types as base properties for case classes.
 
 1. `String`
@@ -16,7 +18,8 @@ Currently it supports the following types as base properties for case classes.
 1. `org.mongodb.scala.bson.collection.immutable.Document`
 1. `org.mongodb.scala.bson.BsonDocument` 
 
-###Usage
+Usage
+-----
 
 ```scala
 import io.github.shyamsalimkumar.mongodb.shapeless._
@@ -29,7 +32,8 @@ val userDocument = user.toDocument
 // Document((age,BsonInt32{value=50}), (name,BsonString{value='User 01'}), (_id,BsonString{value='user-001'}))
 ```
 
-#####Note
+Note
+----
 
 `Any` is not supported so instead of using `Map[String, Any]` use either `Document` 
 or `BsonDocument`. If you use something like `Map[String, Any]` it will result in a 
